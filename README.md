@@ -22,6 +22,14 @@ to AWS Lambda and Amazon API Gateway.
 
 ## What Do I Do Next?
 
+### Install sam cli
+
+```bash
+brew tap aws/tap
+brew install aws-sam-cli
+```
+This is necessary for running below
+
 ### Run locally
 
 ```bash
