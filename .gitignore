@@ -1,3 +1,8 @@
+.DS_Store
+
+# sam output file
+template-output.yml
+
 # Logs
 logs
 *.log
