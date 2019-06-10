@@ -12,6 +12,7 @@ to AWS Lambda and Amazon API Gateway.
   by AWS CloudFormation to deploy your service to AWS Lambda and Amazon API
   Gateway.
 * buildspec.yml - this file is used by AWS CodeBuild to package your service for deployment to AWS Lambda
+* scripts/deploy.sh - script to deploy application to AWS
 * inventory/index.js - this file contains the AWS Lambda handler code
 * inventory/add.js - this file contains the sample Node.js code for the web service
 * inventory/add.test.js - this file contains the add tests
