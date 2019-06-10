@@ -1,4 +1,3 @@
-
 # Reference AWS Lambda using Serverless Application Model (SAM)
 
 This repo can be used as a template for creating AWS Lambda functions using the
