@@ -23,6 +23,14 @@ to AWS Lambda and Amazon API Gateway.
 
 ## What Do I Do Next?
 
+### install docker
+
+https://docs.docker.com/install/ 
+
+### install aws cli
+
+https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
+
 ### Install sam cli
 
 ```bash
