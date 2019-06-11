@@ -52,7 +52,7 @@ https://github.com/awslabs/serverless-application-model/blob/master/HOWTO.md
 ### Run tests
 
 ```bash
-npm test
+yarn run test
 ```
 
 AWS CodeBuild also runs through your `buildspec.yml` file. AWS CodeBuild will run the tests during the
