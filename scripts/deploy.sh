@@ -11,7 +11,7 @@ aws s3 cp swagger.yml s3://$S3_BUCKET/swagger.yml
 
 yarn install
 yarn test
-# npm prune --production
+# npm prune --production // yarn auto prunes implicitly
 
 sam.cmd package --template-file $INPUT_FILE --output-template-file $OUTPUT_FILE --s3-bucket $S3_BUCKET
 
