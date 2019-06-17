@@ -14,7 +14,9 @@ Globals:
     Tags:
       stage:
         Ref: StageName
-
+    AutoPublishAlias:
+        Ref: StageName
+        
 Parameters:
   RepositoryName:
     Type: String
