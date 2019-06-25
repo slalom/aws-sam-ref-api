@@ -67,6 +67,9 @@ Resources:
             Path: /inventory
             Method: get
       Role: !GetAtt LambdaExecutionRole.Arn
+      Environment:
+      Variables:
+        OMS_TEST_PASSWORD: '{{resolve:secretsmanager:dev/oms/testing/password:SecretString:password}}'
 
   AddInventory:
     Type: 'AWS::Serverless::Function'
