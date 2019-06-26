@@ -17,7 +17,11 @@ phases:
       
   build:
     commands:
+      # copy swagger file to s3
       - aws s3 cp swagger.yml s3://$S3_BUCKET/swagger.yml
+
+      # generate template-configuration.json
+      - ci/template-configuration.sh
 
       # Use AWS SAM to package the application using AWS CloudFormation
       - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-output.yml
@@ -26,4 +30,4 @@ artifacts:
   type: zip
   files:
     - template-output.yml
-#    - template-configuration.json
+    - template-configuration.json
