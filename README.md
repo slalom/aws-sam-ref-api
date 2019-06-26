@@ -4,6 +4,7 @@ This repo can be used as a template for creating AWS Lambda functions using the
 AWS Serverless Application Model. These functions will be deployed by AWS CloudFormation
 to AWS Lambda and Amazon API Gateway.
 
+
 ## What's Here
 
 * README.md - this file
