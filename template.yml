@@ -40,7 +40,7 @@ Resources:
   RestApi:
     Type: AWS::Serverless::Api
     Properties:
-      Name: !Sub ${RepositoryName}-${OrganizationName}-${ProjectName}-${StageName}
+      Name: !Sub ${RepositoryName}-${StageName}
       StageName:
         Ref: StageName
       DefinitionBody:
@@ -57,7 +57,7 @@ Resources:
   SearchInventory:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub searchInventory-${OrganizationName}-${ProjectName}-${StageName}
+      FunctionName: !Sub ${RepositoryName}-searchInventory-${StageName}
       Runtime: nodejs8.10
       CodeUri: inventory
       Handler: index.searchInventory
@@ -79,7 +79,7 @@ Resources:
   AddInventory:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub addInventory-${OrganizationName}-${ProjectName}-${StageName}
+      FunctionName: !Sub ${RepositoryName}-addInventory-${StageName}
       Runtime: nodejs8.10
       CodeUri: inventory
       Handler: index.addInventory
@@ -99,7 +99,7 @@ Resources:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub ${RepositoryName}-${OrganizationName}-${ProjectName}-Execution-${StageName}
+      RoleName: !Sub ${RepositoryName}-Execution-${StageName}
       AssumeRolePolicyDocument:
         Statement:
         - Effect: Allow
