@@ -4,6 +4,7 @@ const add = require('./add.js');
 exports.searchInventory = async(event, context) => {
   const inventory = await search.search();
   console.log('Function Name: ', context.functionName);
+  console.log(process.env);
   return {
     statusCode: 200,
     headers: {

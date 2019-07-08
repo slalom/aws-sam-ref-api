@@ -7,6 +7,15 @@ Transform:
 Description:
   Creates a RESTful API using API Gateway and Lambda
 
+Mappings:
+  DependencyURL:
+    dev:
+      endpoint: https://dev.pokemoncentral.com
+    pre-prod:
+      endpoint: https://ppd.pokemoncentral.com
+    prod:
+      endpoint: https://pokemoncentral.com
+      
 Globals:
   Function:
     Runtime: nodejs8.10
@@ -16,7 +25,11 @@ Globals:
         Ref: StageName
     AutoPublishAlias:
         Ref: StageName
-        
+    Environment:
+      Variables:
+        #TEST_URL: !FindInMap [ DependencyURL, !Ref StageName, endpoint ] 
+        TEST_URL: https://dev.pokemoncentral.com
+      
 Parameters:
   RepositoryName:
     Type: String
@@ -34,7 +47,7 @@ Parameters:
   ProjectName:
     Type: String
     Description: Name of Project
-
+           
 Resources:
 
   RestApi:
