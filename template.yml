@@ -31,8 +31,7 @@ Globals:
         # However FindInMap does not work locally with `sam local start-api`
         # See https://github.com/awslabs/aws-sam-cli/issues/476
         # As a work around use --env-var to pass environment variable values to sam local start-api`
-        #TEST_URL: !FindInMap [ DependencyURL, !Ref StageName, endpoint ] 
-        TEST_URL: https://dev.pokemoncentral.com
+        TEST_URL: !FindInMap [ DependencyURL, !Ref StageName, endpoint ] 
       
 Parameters:
   RepositoryName:
