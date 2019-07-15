@@ -8,7 +8,7 @@ test('CON_searchInventory_emptyPayload_prouctUUID', async() => {
     'arn:aws:lambda:us-west-2:175387783879:function:' +
     'tpci-aws-sam-ref-api-searchInventory-dev');
 
-  expect(response.id).toMatch(
+  expect(JSON.parse(response.body).id).toMatch(
     new RegExp(['[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}',
       '\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}'].join('')));
 });
