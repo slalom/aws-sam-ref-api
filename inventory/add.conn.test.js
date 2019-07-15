@@ -17,7 +17,6 @@ test('CON_addInventory_productUUID_locationURI', async() => {
     'us-west-2', {
       accessKeyId: '',
       secretAccessKey: ''},
-    'arn:aws:lambda:us-west-2:175387783879:function:' +
     'tpci-aws-sam-ref-api-addInventory-dev',
     JSON.stringify(event));
 

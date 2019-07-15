@@ -5,7 +5,6 @@ test('CON_searchInventory_emptyPayload_prouctUUID', async() => {
     'us-west-2', {
       accessKeyId: '',
       secretAccessKey: ''},
-    'arn:aws:lambda:us-west-2:175387783879:function:' +
     'tpci-aws-sam-ref-api-searchInventory-dev');
 
   expect(JSON.parse(response.body).id).toMatch(
