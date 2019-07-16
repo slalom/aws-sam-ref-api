@@ -23,8 +23,8 @@ Globals:
     Tags:
       stage:
         Ref: StageName
-    AutoPublishAlias:
-        Ref: StageName
+    # AutoPublishAlias:
+    #     Ref: StageName
     Environment:
       Variables:
         # FindInMap will work in a deployment using CloudFormation
