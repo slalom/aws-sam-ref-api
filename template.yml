@@ -7,6 +7,15 @@ Transform:
 Description:
   Creates a RESTful API using API Gateway and Lambda
 
+Mappings:
+  DependencyURL:
+    dev:
+      endpoint: https://dev.pokemoncentral.com
+    pre-prod:
+      endpoint: https://ppd.pokemoncentral.com
+    prod:
+      endpoint: https://pokemoncentral.com
+      
 Globals:
   Function:
     Runtime: nodejs8.10
@@ -16,7 +25,14 @@ Globals:
         Ref: StageName
     # AutoPublishAlias:
     #     Ref: StageName
-        
+    Environment:
+      Variables:
+        # FindInMap will work in a deployment using CloudFormation
+        # However FindInMap does not work locally with `sam local start-api`
+        # See https://github.com/awslabs/aws-sam-cli/issues/476
+        # As a work around use --env-var to pass environment variable values to sam local start-api`
+        TEST_URL: !FindInMap [ DependencyURL, !Ref StageName, endpoint ] 
+      
 Parameters:
   RepositoryName:
     Type: String
@@ -34,7 +50,7 @@ Parameters:
   ProjectName:
     Type: String
     Description: Name of Project
-
+           
 Resources:
 
   RestApi:
