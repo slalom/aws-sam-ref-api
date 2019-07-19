@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      # Install dependencies needed for running tests
+      - npm install
+
+      # Upgrade AWS CLI to the latest version
+      #- pip install --upgrade awscli
+      # due to https://github.com/aws/aws-cli/issues/4087 use 1.16.141
+      - pip install awscli==1.16.141
+
+  pre_build:
+    commands:
+      - npm run connectivity
