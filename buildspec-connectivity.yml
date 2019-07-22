@@ -4,7 +4,7 @@ phases:
   install:
     commands:
       # Install dependencies needed for running tests
-      - npm install
+      - yarn install
 
       # Upgrade AWS CLI to the latest version
       #- pip install --upgrade awscli
@@ -13,4 +13,4 @@ phases:
 
   pre_build:
     commands:
-      - npm run connectivity
+      - yarn run connectivity
