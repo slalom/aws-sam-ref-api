@@ -14,9 +14,7 @@ test('CON_addInventory_productUUID_locationURI', async() => {
     isBase64Encoded: 'true'};
 
   var response = await invoke.invokeLamdba(
-    'us-west-2', {
-      accessKeyId: '',
-      secretAccessKey: ''},
+    'us-west-2',
     'tpci-aws-sam-ref-api-addInventory-dev',
     JSON.stringify(event));
 

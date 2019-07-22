@@ -3,9 +3,7 @@ const aws = require('aws-sdk');
 exports.invokeLamdba = async(region, creds, functionName, payload) =>
   new Promise((resolve, reject) => {
     var lambda = new aws.Lambda({
-      region: region,
-      accessKeyId: creds.accessKeyId,
-      secretAccessKey: creds.secretAccessKey});
+      region: region});
     var params = {FunctionName: functionName};
     if (payload) {
       params.Payload = payload;
