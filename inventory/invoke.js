@@ -18,4 +18,3 @@ exports.invokeLamdba = async(region, functionName, payload) =>
       }
     });
   });
-
