@@ -1,6 +1,6 @@
 const aws = require('aws-sdk');
 
-exports.invokeLamdba = async(region, creds, functionName, payload) =>
+exports.invokeLamdba = async(region, functionName, payload) =>
   new Promise((resolve, reject) => {
     var lambda = new aws.Lambda({
       region: region});
