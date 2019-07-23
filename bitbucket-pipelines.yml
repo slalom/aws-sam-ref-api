@@ -9,6 +9,5 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - npm install
           - npm test
-          - exit 1
         after-script:
           - slack-alert.sh ${BITBUCKET_EXIT_CODE} "Test"
