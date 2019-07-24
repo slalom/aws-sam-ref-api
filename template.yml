@@ -50,6 +50,10 @@ Parameters:
   ProjectName:
     Type: String
     Description: Name of Project
+  CustomerDomain:
+    Type: String
+    Description: Name of API Gateway custom domain
+    Default: dev.api.slalom-dev.com
            
 Resources:
 
@@ -57,8 +61,7 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       Name: !Sub ${RepositoryName}-${StageName}
-      StageName:
-        Ref: StageName
+      StageName: !Ref StageName
       DefinitionBody:
         Fn::Transform:
           Name: AWS::Include
@@ -70,6 +73,17 @@ Resources:
                   - Ref: S3BucketName
                   - '/swagger.yml'
   
+  # The BasePathMapping will fail if there is not a "Custom Domain Name" configured in the API Gateway Console. 
+  # Custom domain names are configured separate from SAM template since they are shared across APIs
+  APIBasePathMapping:
+    Type: AWS::ApiGateway::BasePathMapping
+    DependsOn: "RestApi"
+    Properties:
+      BasePath: !Sub ${RepositoryName}-${StageName}
+      DomainName: !Ref CustomerDomain
+      RestApiId: !Ref RestApi
+      Stage: !Ref StageName
+
   SearchInventory:
     Type: AWS::Serverless::Function
     Properties:
