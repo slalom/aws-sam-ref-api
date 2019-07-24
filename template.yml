@@ -50,7 +50,7 @@ Parameters:
   ProjectName:
     Type: String
     Description: Name of Project
-  CustomerDomain:
+  CustomDomain:
     Type: String
     Description: Name of API Gateway custom domain
     Default: dev.api.slalom-dev.com
@@ -80,7 +80,7 @@ Resources:
     DependsOn: "RestApi"
     Properties:
       BasePath: !Sub ${RepositoryName}-${StageName}
-      DomainName: !Ref CustomerDomain
+      DomainName: !Ref CustomDomain
       RestApiId: !Ref RestApi
       Stage: !Ref StageName
 
