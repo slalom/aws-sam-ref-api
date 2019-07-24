@@ -11,10 +11,17 @@ Mappings:
   DependencyURL:
     dev:
       endpoint: https://dev.pokemoncentral.com
-    pre-prod:
+    stage:
       endpoint: https://ppd.pokemoncentral.com
     prod:
       endpoint: https://pokemoncentral.com
+  CustomDomain:
+    dev:
+      domain: dev.api.slalom-dev.com
+    stage:
+      domain: stage.api.slalom-dev.com
+    prod:
+      domain: prod.api.slalom-dev.com
       
 Globals:
   Function:
@@ -50,10 +57,6 @@ Parameters:
   ProjectName:
     Type: String
     Description: Name of Project
-  CustomDomain:
-    Type: String
-    Description: Name of API Gateway custom domain
-    Default: dev.api.slalom-dev.com
            
 Resources:
 
@@ -79,8 +82,8 @@ Resources:
     Type: AWS::ApiGateway::BasePathMapping
     DependsOn: "RestApi"
     Properties:
-      BasePath: !Sub ${RepositoryName}-${StageName}
-      DomainName: !Ref CustomDomain
+      BasePath: !Ref RepositoryName
+      DomainName: !FindInMap [ CustomDomain, !Ref StageName, domain ] 
       RestApiId: !Ref RestApi
       Stage: !Ref StageName
 
