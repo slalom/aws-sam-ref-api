@@ -14,6 +14,20 @@ servers:
 tags:
 - name: inventory
   description: inventory calls
+# whitelist pokemon vpn in non-prod account
+x-amazon-apigateway-policy:
+  Version: "2012-10-17"
+  Statement:
+    - Effect: "Allow"
+      Principal: "*"
+      Action:
+        - "execute-api:Invoke"
+      Resource: 
+        - "execute-api:us-west-2:175387783879:*/*"
+      Condition:
+        IpAddress:
+          aws:SourceIp:
+            - "76.191.87.0/24"
 paths:
   /inventory:
     get:
