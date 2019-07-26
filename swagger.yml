@@ -23,11 +23,11 @@ x-amazon-apigateway-policy:
       Action:
         - "execute-api:Invoke"
       Resource: 
-        - "execute-api:us-west-2:175387783879:*/*"
+        - "execute-api:*"
       Condition:
         IpAddress:
           aws:SourceIp:
-            - "76.191.87.0/24"
+            - "76.191.87.2"
 paths:
   /inventory:
     get:
