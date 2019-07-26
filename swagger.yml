@@ -118,6 +118,54 @@ paths:
         httpMethod: POST
         contentHandling: CONVERT_TO_TEXT
         type: aws_proxy
+  # create a resource that maps to s3 bucket
+  /static/{item+}:
+    get:
+      produces:
+      - application/json
+      parameters:
+      - name: item
+        in: path
+        required: true
+        type: string
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            "$ref": "#/definitions/Empty"
+          headers:
+            Content-Length:
+              type: string
+            Date:
+              type: string
+            Content-Type:
+              type: string
+        '400':
+          description: 400 response
+        '500':
+          description: 500 response
+      security:
+      - sigv4: []
+      x-amazon-apigateway-integration:
+        # TODO need to define new generic role or pass this role
+        credentials: arn:aws:iam::175387783879:role/tpci-ecommweb-labmda-access-s3
+        responses:
+          4\d{2}:
+            statusCode: '400'
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Content-Type: integration.response.header.Content-Type
+              method.response.header.Date: integration.response.header.Date
+              method.response.header.Content-Length: integration.response.header.content-length
+          5\d{2}:
+            statusCode: '500'
+        requestParameters:
+          integration.request.path.item: method.request.path.item
+        uri: arn:aws:apigateway:us-west-2:s3:path/tpci-aws-sam-ref-api/{item}
+        passthroughBehavior: when_no_match
+        httpMethod: GET
+        type: aws        
 components:
   schemas:
     InventoryItem:
