@@ -14,21 +14,26 @@ servers:
 tags:
 - name: inventory
   description: inventory calls
+
 # whitelist pokemon vpn in non-prod account
-# TODO this needs to be conditional for prod
-x-amazon-apigateway-policy:
-  Version: "2012-10-17"
-  Statement:
-    - Effect: "Allow"
-      Principal: "*"
-      Action:
-        - "execute-api:Invoke"
-      Resource: 
-        - "arn:aws:execute-api:us-west-2:175387783879:*/*/*/*"
-      Condition:
-        IpAddress:
-          aws:SourceIp:
-            - "76.191.87.2"
+Fn::If: 
+- NonProd
+-
+  x-amazon-apigateway-policy:
+    Version: "2012-10-17"
+    Statement:
+      - Effect: "Allow"
+        Principal: "*"
+        Action:
+          - "execute-api:Invoke"
+        Resource:
+          - "arn:aws:execute-api:us-west-2:175387783879:*/*/*/*"
+        Condition:
+          IpAddress:
+            aws:SourceIp:
+              - "76.191.87.2"
+- Ref: "AWS::NoValue"
+
 paths:
   /inventory:
     get:
