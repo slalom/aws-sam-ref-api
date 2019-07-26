@@ -22,7 +22,7 @@ Mappings:
       domain: stage.api.slalom-dev.com
     prod:
       domain: prod.api.slalom-dev.com
-      
+
 Globals:
   Function:
     Runtime: nodejs8.10
@@ -57,7 +57,10 @@ Parameters:
   ProjectName:
     Type: String
     Description: Name of Project
-           
+
+Conditions: 
+  NonProd: !Not [ !Equals [ !Ref StageName, prod ] ]
+
 Resources:
 
   RestApi:
@@ -70,11 +73,7 @@ Resources:
           Name: AWS::Include
           Parameters:
             Location:
-              Fn::Join:
-                - ''
-                - - 's3://'
-                  - Ref: S3BucketName
-                  - '/swagger.yml'
+              !Sub s3://${S3BucketName}/swagger.yml
   
   # The BasePathMapping will fail if there is not a "Custom Domain Name" configured in the API Gateway Console. 
   # Custom domain names are configured separate from SAM template since they are shared across APIs
