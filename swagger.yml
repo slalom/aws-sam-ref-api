@@ -16,11 +16,10 @@ tags:
   description: inventory calls
 
 # whitelist pokemon vpn in non-prod account
-Fn::If: 
-- NonProd
--
-  x-amazon-apigateway-policy:
-    Version: "2012-10-17"
+x-amazon-apigateway-policy:
+ Fn::If: 
+  - NonProd
+  - Version: "2012-10-17"
     Statement:
       - Effect: "Allow"
         Principal: "*"
@@ -32,7 +31,7 @@ Fn::If:
           IpAddress:
             aws:SourceIp:
               - "76.191.87.2"
-- Ref: "AWS::NoValue"
+  - Ref: "AWS::NoValue"
 
 paths:
   /inventory:
