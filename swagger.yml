@@ -33,6 +33,15 @@ x-amazon-apigateway-policy:
               - "76.191.87.2"
   - Ref: "AWS::NoValue"
 
+# specify the types API should treat as binary
+x-amazon-apigateway-binary-media-types:
+- image/jpeg
+- image/png
+- image/*
+- image/webp
+- image/apng
+- "*/*"
+
 paths:
   /inventory:
     get:
@@ -152,8 +161,8 @@ paths:
       security:
       - sigv4: []
       x-amazon-apigateway-integration:
-        # TODO need to define new generic role or pass this role
-        credentials: arn:aws:iam::175387783879:role/tpci-ecommweb-labmda-access-s3
+        credentials: 
+          Fn::Sub: ${LambdaExecutionRole.Arn}
         responses:
           4\d{2}:
             statusCode: '400'
@@ -161,13 +170,14 @@ paths:
             statusCode: '200'
             responseParameters:
               method.response.header.Content-Type: integration.response.header.Content-Type
+              method.response.header.Content-Length: integration.response.header.Content-length
               method.response.header.Date: integration.response.header.Date
-              method.response.header.Content-Length: integration.response.header.content-length
           5\d{2}:
             statusCode: '500'
         requestParameters:
           integration.request.path.item: method.request.path.item
-        uri: arn:aws:apigateway:us-west-2:s3:path/tpci-aws-sam-ref-api/{item}
+        uri: 
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:s3:path/${S3BucketName}/{item}
         passthroughBehavior: when_no_match
         httpMethod: GET
         type: aws        
