@@ -26,7 +26,7 @@ x-amazon-apigateway-policy:
         Action:
           - "execute-api:Invoke"
         Resource:
-          - Fn::Sub: arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*/*"
+          - Fn::Sub: "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*/*"
         Condition:
           IpAddress:
             aws:SourceIp:
