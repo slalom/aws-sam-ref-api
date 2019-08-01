@@ -177,7 +177,7 @@ paths:
         requestParameters:
           integration.request.path.item: method.request.path.item
         uri: 
-          Fn::Sub: arn:aws:apigateway:us-west-2:s3:path/${S3BucketName}/{item}
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:s3:path/${S3BucketName}/{item}
         passthroughBehavior: when_no_match
         httpMethod: GET
         type: aws        
