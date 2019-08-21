@@ -77,14 +77,14 @@ Resources:
   
   # The BasePathMapping will fail if there is not a "Custom Domain Name" configured in the API Gateway Console. 
   # Custom domain names are configured separate from SAM template since they are shared across APIs
-  # APIBasePathMapping:
-  #   Type: AWS::ApiGateway::BasePathMapping
-  #   DependsOn: "RestApi"
-  #   Properties:
-  #     BasePath: !Ref RepositoryName
-  #     DomainName: !FindInMap [ CustomDomain, !Ref StageName, domain ] 
-  #     RestApiId: !Ref RestApi
-  #     Stage: !Ref StageName
+  APIBasePathMapping:
+    Type: AWS::ApiGateway::BasePathMapping
+    DependsOn: "RestApi"
+    Properties:
+      BasePath: !Ref RepositoryName
+      DomainName: !FindInMap [ CustomDomain, !Ref StageName, domain ] 
+      RestApiId: !Ref RestApi
+      Stage: !Ref StageName
 
   SearchInventory:
     Type: AWS::Serverless::Function
