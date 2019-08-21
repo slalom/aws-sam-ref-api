@@ -17,9 +17,9 @@ Mappings:
       endpoint: https://pokemoncentral.com
   CustomDomain:
     dev:
-      domain: dev.api.slalom-dev.com
+      domain: pc.dev.api.slalom-dev.com
     stage:
-      domain: stage.api.slalom-dev.com
+      domain: pc.stage.api.slalom-dev.com
     prod:
       domain: prod.api.slalom-dev.com
 
