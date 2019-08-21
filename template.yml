@@ -79,7 +79,7 @@ Resources:
   # Custom domain names are configured separate from SAM template since they are shared across APIs
   APIBasePathMapping:
     Type: AWS::ApiGateway::BasePathMapping
-    DependsOn: "RestApi"
+    DependsOn: RestApi
     Properties:
       BasePath: !Ref RepositoryName
       DomainName: !FindInMap [ CustomDomain, !Ref StageName, domain ] 
