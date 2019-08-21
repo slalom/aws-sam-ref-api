@@ -17,11 +17,11 @@ Mappings:
       endpoint: https://pokemoncentral.com
   CustomDomain:
     dev:
-      domain: pc.dev.api.slalom-dev.com
+      domain: !Sub ${DomainPrefix}dev.api.slalom-dev.com
     stage:
-      domain: pc.stage.api.slalom-dev.com
+      domain: !Sub ${DomainPrefix}stage.api.slalom-dev.com
     prod:
-      domain: prod.api.slalom-dev.com
+      domain: !Sub ${DomainPrefix}prod.api.slalom-dev.com
 
 Globals:
   Function:
@@ -57,6 +57,10 @@ Parameters:
   ProjectName:
     Type: String
     Description: Name of Project
+  DomainPrefix:
+    Type: String
+    Description: Prefix used in custom domain, e.g. "pc."
+    Default: ""
 
 Conditions: 
   NonProd: !Not [ !Equals [ !Ref StageName, prod ] ]
